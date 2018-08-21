@@ -3,8 +3,8 @@ package_files <- function(path) {
 
   all <- normalizePath(r_files(path))
 
-  collate <- scan(text = desc$Collate %||% "", what = "", sep = " ",
-    quiet = TRUE)
+  collate <- stri::stri_replace_all_regex(desc$Collate, '\n', '')
+  collate <- scan(collate %||% "", what = "", sep = " ", quiet = TRUE)
 
   collate <- normalizePath(file.path(path, 'R', collate))
 
