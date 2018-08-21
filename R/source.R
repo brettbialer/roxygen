@@ -4,7 +4,9 @@ package_files <- function(path) {
   all <- normalizePath(r_files(path))
 
   collate <- stringi::stri_replace_all_regex(desc$Collate, '[\n ]+', ' ')
-  collate <- scan(collate %||% "", what = "", sep = " ", quiet = TRUE)
+  collate <- scan(text = collate %||% "", what = "", sep = " ", quiet = TRUE)
+  
+  scan(text = stringi::stri_replace_all_regex(desc$Collate, '[\n ]+', ' '), what = "", sep = " ", quiet = FALSE)
 
   collate <- normalizePath(file.path(path, 'R', collate))
 
